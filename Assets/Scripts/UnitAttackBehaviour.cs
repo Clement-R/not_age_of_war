@@ -20,23 +20,22 @@ public class UnitAttackBehaviour : MonoBehaviour {
 	void Update () {
 		if (_state.ActualState == UnitStateBehaviour.State.ATTACK) {
 			if (_lastAttackTime + attackCooldown <= Time.time && target != null) {
-				_animator.SetBool("CanAttack", true);
-				_lastAttackTime = Time.time;
-				Attack();
-
-			} else if(target == null) {
+                _animator.SetBool("CanAttack", true);
+            } else if(target == null) {
 		        _animator.SetBool("CanAttack", false);
 		        _animator.SetBool("TargetSet", false);
 		        _animator.SetBool("IsRunning", true);
 				_state.ChangeState(UnitStateBehaviour.State.RUN);
-
-			} else {
-		        _animator.SetBool("CanAttack", false);
 			}
 		}
     }
 
+    /// <summary>
+    /// Called in attack animation
+    /// </summary>
 	private void Attack() {
 		target.GetHit(25);
-	}
+        _lastAttackTime = Time.time;
+        _animator.SetBool("CanAttack", false);
+    }
 }

@@ -27,7 +27,6 @@ public class UnitHealthBehaviour : MonoBehaviour {
 		// Update UI
 		float value = Health * (1.0f / maxHealth);
 		value = Mathf.Clamp(value, 0f, 1f);
-		Debug.Log(value);
 
 		_healthbar.transform.localScale = new Vector3(value, 1, 0);
 
@@ -41,12 +40,12 @@ public class UnitHealthBehaviour : MonoBehaviour {
 	private IEnumerator Blink() {
 		var material = GetComponent<SpriteRenderer>().material;
 		var counter = 0;
-		while (counter <= 3) {
-			material.SetFloat("_BlinkAmount", 1f);
+        float amount = 1f;
+		while (counter <= 2) {
+            amount = amount == 1f ? 0f : 1f;
+            material.SetFloat("_BlinkAmount", amount);
 			counter++;
-			yield return new WaitForSeconds(0.15f);
-			material.SetFloat("_BlinkAmount", 0f);
-			yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.15f);
 		}
 	}
 }
