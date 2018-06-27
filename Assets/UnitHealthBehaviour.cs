@@ -5,7 +5,8 @@ using UnityEngine;
 public class UnitHealthBehaviour : MonoBehaviour {
 
 	public int Health { get; private set; }
-	public int maxHealth;
+    [HideInInspector]
+    public int maxHealth;
 
 	private GameObject _healthbar;
 
@@ -21,7 +22,6 @@ public class UnitHealthBehaviour : MonoBehaviour {
 
 	public void GetHit(int amount) {
 		StartCoroutine(Blink());
-
 		// Update health
 		LoseHealth(amount);
 		// Update UI

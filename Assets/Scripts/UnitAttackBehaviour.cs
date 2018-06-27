@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UnitAttackBehaviour : MonoBehaviour {
 	public float attackCooldown = 0.5f;
-	public UnitHealthBehaviour target;
+    [HideInInspector]
+    public UnitHealthBehaviour target;
 
     private UnitStateBehaviour _state;
 	private UnitHealthBehaviour _healthSystem;

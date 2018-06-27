@@ -41,7 +41,7 @@ public class UnitMoveBehaviour : MonoBehaviour {
     private void Update()
     {
         Debug.DrawLine(transform.position, transform.position + new Vector3(_direction.x, _direction.y, 0f) * _rayDistance, Color.red);
-        
+
         foreach (var hit in Physics2D.RaycastAll(transform.position, _direction, _rayDistance))
         {
             if(hit.transform.gameObject != gameObject)
@@ -61,8 +61,20 @@ public class UnitMoveBehaviour : MonoBehaviour {
                         Debug.Log("Go to attack stance");
                     }
                 }
-
+                else if (unitData != null && unitData.side == _data.side)
+                {
+                    _state.ChangeState(UnitStateBehaviour.State.IDLE);
+                    _animator.SetBool("IsBlocked", true);
+                }
                 break;
+            }
+            else
+            {
+                if(_state.ActualState == UnitStateBehaviour.State.IDLE)
+                {
+                    _state.ChangeState(UnitStateBehaviour.State.RUN);
+                    _animator.SetBool("IsBlocked", false);
+                }
             }
         }
     }
@@ -80,6 +92,10 @@ public class UnitMoveBehaviour : MonoBehaviour {
                     _rb2D.velocity = transform.right * speed;
                     break;
             }
+        }
+        else
+        {
+            _rb2D.velocity = Vector2.zero;
         }
     }
 }
