@@ -20,6 +20,8 @@ public class UnitHealthBehaviour : MonoBehaviour {
 	}
 
 	public void GetHit(int amount) {
+		StartCoroutine(Blink());
+
 		// Update health
 		LoseHealth(amount);
 		// Update UI
@@ -33,6 +35,18 @@ public class UnitHealthBehaviour : MonoBehaviour {
 		if (Health <= 0) {
 			// TODO : Death
 			Destroy(gameObject);
+		}
+	}
+
+	private IEnumerator Blink() {
+		var material = GetComponent<SpriteRenderer>().material;
+		var counter = 0;
+		while (counter <= 3) {
+			material.SetFloat("_BlinkAmount", 1f);
+			counter++;
+			yield return new WaitForSeconds(0.15f);
+			material.SetFloat("_BlinkAmount", 0f);
+			yield return new WaitForSeconds(0.15f);
 		}
 	}
 }

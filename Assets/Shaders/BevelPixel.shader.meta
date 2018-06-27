@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: f09873c9d0cf5384688b2343007fbd0a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _MainTex: {instanceID: 0}
+  - _BevelTex: {fileID: 2800000, guid: 47ca9b071b7d7f64ebe46bc10bee0c47, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
