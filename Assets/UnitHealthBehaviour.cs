@@ -9,9 +9,11 @@ public class UnitHealthBehaviour : MonoBehaviour {
     public int maxHealth;
 
 	private GameObject _healthbar;
-
+	private UnitData _data;
 	void Start () {
-		Health = GetComponent<UnitData>().health;
+		_data = GetComponent<UnitData>();
+		Health = _data.health;
+		
 		_healthbar = transform.GetChild(1).gameObject;
 		maxHealth = Health;
 	}
@@ -32,8 +34,21 @@ public class UnitHealthBehaviour : MonoBehaviour {
 
 		// Detech death
 		if (Health <= 0) {
-			// TODO : Death
-			Destroy(gameObject);
+			Die();
+		}
+	}
+
+	private void Die() {
+		// Give money to enemy
+		pkm.EventManager.EventManager.TriggerEvent("UnitDie", new { side = _data.side, reward = _data.reward });
+
+		// TODO : Player particle system and animation + disable box collider and fade out after delay
+		Destroy(gameObject);
+
+		if (_data.isBase) {
+			pkm.EventManager.EventManager.TriggerEvent("BaseDestroy", new { side = _data.side });
+			Time.timeScale = 0f;
+			Debug.Log("Game end");
 		}
 	}
 

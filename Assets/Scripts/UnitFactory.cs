@@ -9,6 +9,8 @@ public class UnitFactory : MonoBehaviour {
     public Transform spawnPosition;
     public List<UnitsToPrefab> units = new List<UnitsToPrefab>();
 
+	public PlayerResourcesManager _resources;
+
     private bool _isBusy = false;
 
     private void Start()
@@ -27,14 +29,26 @@ public class UnitFactory : MonoBehaviour {
     public void SpawnUnit(int index)
     {
         GameObject unitToSpawn = units[0].prefab;
-        if(!_isBusy)
+        if(!_isBusy && CheckMoney(unitToSpawn))
             StartCoroutine(Spawn(unitToSpawn));
     }
+
+	private bool CheckMoney(GameObject unitToSpawn) {
+		UnitData data = unitToSpawn.GetComponent<UnitData>();
+		if (_resources.money - data.cost >= 0) {
+			return true;
+		}
+
+		return false;
+	}
 
     private IEnumerator Spawn(GameObject unitToSpawn)
     {
         _isBusy = true;
-        float t = 0f;
+
+	    _resources.LoseMoney(unitToSpawn.GetComponent<UnitData>().cost);
+
+		float t = 0f;
         while(t < 2f)
         {
             loadingBar.transform.localScale = new Vector2(t * (1f / 2f), loadingBar.transform.localScale.y);

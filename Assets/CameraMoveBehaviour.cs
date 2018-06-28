@@ -10,11 +10,15 @@ public class CameraMoveBehaviour : MonoBehaviour {
     public float scrollSpeed = 10f;
 
     private float _cameraHalfWidth;
+	private float _minX;
+	private float _maxX;
 
-    private void Start()
+	private void Start()
     {
         _cameraHalfWidth = Camera.main.orthographicSize * ((float)Screen.width / Screen.height);
-    }
+	    _minX = min.position.x + _cameraHalfWidth;
+	    _maxX = max.position.x - _cameraHalfWidth;
+	}
 
     void Update () {
 		if(Input.GetKey(KeyCode.LeftArrow))
@@ -29,7 +33,6 @@ public class CameraMoveBehaviour : MonoBehaviour {
     private void Move(float direction)
     {
         transform.Translate(new Vector3(scrollSpeed * direction, 0f, 0f));
-
-        
+	    transform.position = new Vector3(Mathf.Clamp(transform.position.x, _minX, _maxX), 0f, -10f);
     }
 }
