@@ -21,7 +21,11 @@ public class UnitAttackBehaviour : MonoBehaviour {
 	void Update () {
 		if (_state.ActualState == UnitStateBehaviour.State.ATTACK) {
 			if (_lastAttackTime + attackCooldown <= Time.time && target != null) {
-                _animator.SetBool("CanAttack", true);
+				if (target.Health > 0) {
+					_animator.SetBool("CanAttack", true);
+				} else {
+					target = null;
+				}
             } else if(target == null) {
 		        _animator.SetBool("CanAttack", false);
 		        _animator.SetBool("TargetSet", false);

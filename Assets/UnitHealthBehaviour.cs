@@ -42,13 +42,14 @@ public class UnitHealthBehaviour : MonoBehaviour {
 		// Give money to enemy
 		pkm.EventManager.EventManager.TriggerEvent("UnitDie", new { side = _data.side, reward = _data.reward });
 
-		// TODO : Player particle system and animation + disable box collider and fade out after delay
-		Destroy(gameObject);
+		// TODO : Play particle system and animation + disable box collider and fade out after delay
 
 		if (_data.isBase) {
 			pkm.EventManager.EventManager.TriggerEvent("BaseDestroy", new { side = _data.side });
-			Time.timeScale = 0f;
+			// Time.timeScale = 0f;
 			Debug.Log("Game end");
+		} else {
+			Destroy(gameObject);
 		}
 	}
 

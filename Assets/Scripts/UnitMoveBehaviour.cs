@@ -50,16 +50,23 @@ public class UnitMoveBehaviour : MonoBehaviour {
 
                 if (unitData != null && unitData.side != _data.side)
                 {
-                    if (_state.ActualState != UnitStateBehaviour.State.ATTACK)
-                    {
-                        _animator.SetBool("IsRunning", false);
-                        _animator.SetBool("TargetSet", true);
-                        _state.ChangeState(UnitStateBehaviour.State.ATTACK);
+	                if (hit.transform.gameObject.GetComponent<UnitHealthBehaviour>().Health > 0) {
+	                    if (_state.ActualState != UnitStateBehaviour.State.ATTACK)
+	                    {
+	                        _animator.SetBool("IsRunning", false);
+	                        _animator.SetBool("TargetSet", true);
+	                        _state.ChangeState(UnitStateBehaviour.State.ATTACK);
 
-                        _attackBehaviour.target = hit.transform.gameObject.GetComponent<UnitHealthBehaviour>();
+	                        _attackBehaviour.target = hit.transform.gameObject.GetComponent<UnitHealthBehaviour>();
 
-                        Debug.Log("Go to attack stance");
-                    }
+	                        Debug.Log("Go to attack stance");
+	                    }
+	                } else {
+		                if (unitData.isBase) {
+			                _state.ChangeState(UnitStateBehaviour.State.IDLE);
+			                _animator.SetBool("IsBlocked", true);
+						}
+	                }
                 }
                 else if (unitData != null && unitData.side == _data.side)
                 {

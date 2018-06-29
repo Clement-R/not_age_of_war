@@ -26,20 +26,25 @@ public class SpawnExplosionInCollider : MonoBehaviour {
 	private IEnumerator Effect() {
 		int counter = 0;
 
-		Vector2 center = new Vector2(transform.position.x, transform.position.y) + _box.offset;
-		float minX = center.x + _box.size.x / 2f;
-		float maxX = _box.size.x;
-		float minY = _box.size.x;
-		float maxY = _box.size.x;
+		Vector2 center = new Vector2(transform.position.x, transform.position.y) + _box.offset * transform.localScale;
 
-		while (counter <= 10) {
-			Vector2 randomPosition = Vector2.zero;
+		Debug.Log(center);
+		Debug.DrawLine(center + new Vector2(40f, 40f), center - new Vector2(40f, 40f), Color.red, 15f);
+		Debug.DrawLine(center + new Vector2(40f, -40f), center - new Vector2(40f, -40f), Color.red, 15f);
 
-			// TODO : Get random point in collider
+		float minX = center.x - (((_box.size.x / 2f) * transform.localScale.x) - 25f);
+		float maxX = center.x + (((_box.size.x / 2f) * transform.localScale.x) - 25f);
+		float minY = center.y - (((_box.size.y / 2f) * transform.localScale.y) - 25f);
+		float maxY = center.y + (((_box.size.y / 2f) * transform.localScale.y) - 25f);
 
+		while (counter <= 50) {
+			Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+
+			Debug.DrawLine(randomPosition + new Vector2(20f, 20f), randomPosition - new Vector2(20f, 20f), Color.blue, 15f);
+			Debug.DrawLine(randomPosition + new Vector2(20f, -20f), randomPosition - new Vector2(20f, -20f), Color.blue, 15f);
 
 			Instantiate(explosionPrefab, randomPosition, Quaternion.identity);
-			yield return new WaitForSeconds(Random.Range(0.15f, 0.35f));
+			yield return new WaitForSecondsRealtime(Random.Range(0.15f, 0.35f));
 			counter++;
 		}
 	}
