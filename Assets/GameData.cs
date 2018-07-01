@@ -14,6 +14,7 @@ public class GameData : MonoBehaviour
     
     public GameObject goldPrefab;
     public GameObject moneyText;
+    public Side playerSide = Side.LEFT;
     
     private static GameData _instance = null;
 

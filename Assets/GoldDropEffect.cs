@@ -11,6 +11,8 @@ public class GoldDropEffect : MonoBehaviour
 	public float minY;
 	public float maxY;
 
+	public int reward;
+	
 	public GameObject moneyText;
 	
 	private Rigidbody2D _rb2d;
@@ -44,6 +46,9 @@ public class GoldDropEffect : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		// Give money to enemy
+		pkm.EventManager.EventManager.TriggerEvent("UnitDie", new { side = Side.RIGHT, reward = reward });
+		
 		Destroy(this.gameObject);
 	}
 }

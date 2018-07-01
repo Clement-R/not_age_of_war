@@ -39,15 +39,13 @@ public class UnitHealthBehaviour : MonoBehaviour {
 	}
 
 	private void Die() {
-		// Give money to enemy
-		pkm.EventManager.EventManager.TriggerEvent("UnitDie", new { side = _data.side, reward = _data.reward });
-
 		// Drop gold
 		if (_data.side != Side.LEFT)
 		{
+			int reward = _data.reward / 10;
 			for (int i = 0; i < 10; i++)
 			{
-				Instantiate(GameData.Instance.goldPrefab, transform.position, Quaternion.identity);
+				Instantiate(GameData.Instance.goldPrefab, transform.position, Quaternion.identity).GetComponent<GoldDropEffect>().reward = reward;
 			}	
 		}
 		

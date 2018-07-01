@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Resources
+  - Floor
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Background/Base
     uniqueID: 1518548183
+    locked: 0
+  - name: Resources
+    uniqueID: 1981685529
     locked: 0
   - name: Units/Unit
     uniqueID: 290449975
