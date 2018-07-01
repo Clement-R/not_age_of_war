@@ -42,6 +42,15 @@ public class UnitHealthBehaviour : MonoBehaviour {
 		// Give money to enemy
 		pkm.EventManager.EventManager.TriggerEvent("UnitDie", new { side = _data.side, reward = _data.reward });
 
+		// Drop gold
+		if (_data.side != Side.LEFT)
+		{
+			for (int i = 0; i < 10; i++)
+			{
+				Instantiate(GameData.Instance.goldPrefab, transform.position, Quaternion.identity);
+			}	
+		}
+		
 		// TODO : Play particle system and animation + disable box collider and fade out after delay
 
 		if (_data.isBase) {
