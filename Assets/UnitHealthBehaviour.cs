@@ -40,7 +40,7 @@ public class UnitHealthBehaviour : MonoBehaviour {
 
 	private void Die() {
 		// Drop gold
-		if (_data.side != Side.LEFT)
+		if (_data.side != Side.LEFT && !_data.isBase)
 		{
 			int reward = _data.reward / 10;
 			for (int i = 0; i < 10; i++)
