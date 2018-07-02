@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameOrchestrator : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
-		
+		pkm.EventManager.EventManager.StartListening("GameEnd", OnGameEnd);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	private void OnGameEnd(dynamic obj) {
+		if (obj.side == Side.LEFT) {
+			Debug.Log("Game win");
+		} else {
+			Debug.Log("Game lose");
+		}
 	}
 }

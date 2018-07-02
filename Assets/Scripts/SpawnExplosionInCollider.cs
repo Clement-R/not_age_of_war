@@ -21,7 +21,7 @@ public class SpawnExplosionInCollider : MonoBehaviour {
 		}
 		else
 		{
-			pkm.EventManager.EventManager.StartListening("BaseDestroy", TriggerEvent);	
+			pkm.EventManager.EventManager.StartListening("BaseDestroy", TriggerEvent);
 		}
 	}
 
@@ -54,6 +54,11 @@ public class SpawnExplosionInCollider : MonoBehaviour {
 			Instantiate(explosionPrefab, randomPosition, Quaternion.identity);
 			yield return new WaitForSecondsRealtime(Random.Range(0.15f, 0.35f));
 			counter++;
+		}
+
+		UnitData data = GetComponent<UnitData>();
+		if (data != null && data.isBase) {
+			pkm.EventManager.EventManager.TriggerEvent("GameEnd", new { side = data.side });
 		}
 	}
 }

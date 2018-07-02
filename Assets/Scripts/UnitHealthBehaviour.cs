@@ -53,8 +53,6 @@ public class UnitHealthBehaviour : MonoBehaviour {
 
 		if (_data.isBase) {
 			pkm.EventManager.EventManager.TriggerEvent("BaseDestroy", new { side = _data.side });
-			// Time.timeScale = 0f;
-			Debug.Log("Game end");
 		} else {
 			Destroy(gameObject);
 		}
