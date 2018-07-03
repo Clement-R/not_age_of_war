@@ -28,7 +28,7 @@ public class UnitFactory : MonoBehaviour {
 
     public void SpawnUnit(int index)
     {
-        GameObject unitToSpawn = units[0].prefab;
+        GameObject unitToSpawn = units[index].prefab;
         if(!_isBusy && CheckMoney(unitToSpawn))
             StartCoroutine(Spawn(unitToSpawn));
     }
@@ -72,4 +72,5 @@ public class UnitsToPrefab
 public enum Units
 {
     LIGHT_PUNCH,
+    HEAVY_PUNCH
 }
