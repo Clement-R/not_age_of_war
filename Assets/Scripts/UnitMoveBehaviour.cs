@@ -22,7 +22,7 @@ public class UnitMoveBehaviour : MonoBehaviour {
 		_attackBehaviour = GetComponent<UnitAttackBehaviour>();
         _box2D = GetComponent<BoxCollider2D>();
         _direction = transform.right;
-        _rayDistance = Mathf.Abs(_box2D.offset.x) + (_box2D.size.x) + 10f;
+        _rayDistance = Mathf.Abs(_box2D.offset.x) + (_box2D.size.x) + 20f;
         
         switch (_data.side)
         {

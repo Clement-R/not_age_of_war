@@ -777,8 +777,14 @@ Prefab:
     - target: {fileID: 61179396784952044, guid: 2cdd5995494def64c9b53bd6164e63d1,
         type: 2}
       propertyPath: m_Offset.x
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 212280918407232768, guid: 2cdd5995494def64c9b53bd6164e63d1,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 31330afebf2e811458e3caa58b037956,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cdd5995494def64c9b53bd6164e63d1, type: 2}
   m_IsPrefabAsset: 0
