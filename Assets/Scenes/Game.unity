@@ -632,7 +632,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1920, y: 50}
+  m_Size: {x: 4000, y: 50}
   m_EdgeRadius: 0
 --- !u!4 &282457420
 Transform:
@@ -641,7 +641,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282457418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -313, z: 0}
+  m_LocalPosition: {x: 329, y: -313, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -746,7 +746,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4011252051852898, guid: 2cdd5995494def64c9b53bd6164e63d1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -424
+      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 4011252051852898, guid: 2cdd5995494def64c9b53bd6164e63d1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -997,7 +997,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 494
+      value: 734.99994
       objectReference: {fileID: 0}
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1390,7 +1390,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 239
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1788,7 +1788,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 714.99994
+      value: 955.9999
       objectReference: {fileID: 0}
     - target: {fileID: 4850947073505748, guid: 5bb3dc4ffe21bba4aa5c2b5181e624d8, type: 2}
       propertyPath: m_LocalPosition.y
