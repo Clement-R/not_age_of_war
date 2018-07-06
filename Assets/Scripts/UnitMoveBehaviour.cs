@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UnitMoveBehaviour : MonoBehaviour {
     public float speed = 100f;
-
+    public bool isRange = false;
+    
     private Rigidbody2D _rb2D;
     private UnitData _data;
     private UnitStateBehaviour _state;
@@ -23,6 +24,11 @@ public class UnitMoveBehaviour : MonoBehaviour {
         _box2D = GetComponent<BoxCollider2D>();
         _direction = transform.right;
         _rayDistance = Mathf.Abs(_box2D.offset.x) + (_box2D.size.x) + 20f;
+
+        if (isRange)
+        {
+            _rayDistance *= 5f;
+        }
         
         switch (_data.side)
         {
@@ -70,8 +76,33 @@ public class UnitMoveBehaviour : MonoBehaviour {
                 }
                 else if (unitData != null && unitData.side == _data.side)
                 {
-                    _state.ChangeState(UnitStateBehaviour.State.IDLE);
-                    _animator.SetBool("IsBlocked", true);
+                    if (!isRange)
+                    {
+                        _state.ChangeState(UnitStateBehaviour.State.IDLE);
+                        _animator.SetBool("IsBlocked", true);    
+                    }
+                    else
+                    {
+                        UnitAttackBehaviour attackComponent = unitData.gameObject.GetComponent<UnitAttackBehaviour>();
+                        if (attackComponent.target != null)
+                        {
+                            if (_state.ActualState != UnitStateBehaviour.State.ATTACK)
+                            {
+                                _animator.SetBool("IsRunning", false);
+                                _animator.SetBool("TargetSet", true);
+                                _state.ChangeState(UnitStateBehaviour.State.ATTACK);
+                                
+                                _attackBehaviour.target = attackComponent.target;
+                                Debug.Log("Range attack");
+                            }
+                        }
+                        else
+                        {
+                            _state.ChangeState(UnitStateBehaviour.State.IDLE);
+                            _animator.SetBool("IsBlocked", true);
+                        }
+                        // TODO : If an enemy is found switch to range attack stance else switch to block stance
+                    }
                 }
                 break;
             }
